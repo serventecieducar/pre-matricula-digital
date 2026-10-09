@@ -29,6 +29,46 @@ interface ProcessesListResponse {
   };
 }
 
+export const listPublic = (): Promise<Processes[]> => {
+  const payload = {
+    query: `
+      {
+        publicProcesses(first: 100) {
+          data {
+            id
+            name
+            showWaitingList
+            criteria
+            stages {
+              id
+              type
+              name
+              startAt
+              endAt
+              status
+            }
+            schoolYear {
+              year
+            }
+            grades {
+              id
+              name
+            }
+          }
+        }
+      }
+    `,
+  };
+
+  return graphql<ProcessesListResponse>(payload).then((res) => {
+    const pagina = res.data.data as unknown as {
+      publicProcesses: { data: Processes[] };
+    };
+
+    return pagina.publicProcesses.data;
+  });
+};
+
 export const list = (): Promise<Processes[]> => {
   const payload = {
     query: `

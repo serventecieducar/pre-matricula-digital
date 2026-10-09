@@ -168,6 +168,11 @@ class Process extends Model
         return $this->hasMany(PreRegistration::class)->where('status', PreRegistration::STATUS_REJECTED);
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
+
     public function shouldNotReject(): bool
     {
         return $this->reject_type_id === Process::NO_REJECT;

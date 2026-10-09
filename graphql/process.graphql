@@ -1,3 +1,10 @@
+extend type Query {
+  """
+  Processos ativos da página pública, sem login de servidor.
+  """
+  publicProcesses: [Process!]! @paginate(scopes: ["active"])
+}
+
 extend type Query @guard(with: ["web", "sanctum", "prematricula"]) {
 
   """

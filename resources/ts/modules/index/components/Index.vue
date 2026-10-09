@@ -248,7 +248,7 @@ export default defineComponent({
       loadNotice(NoticeApi.list);
     }
     async function getProceses() {
-      loadProcess(ProcessApi.list).then((res) => {
+      loadProcess(ProcessApi.listPublic).then((res) => {
         const allProcesses = res.filter((process) => process.stages.length);
 
         processes.value = allProcesses;

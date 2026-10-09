@@ -66,9 +66,9 @@ const onMounted = async (notice: Notice, processesParams: ProcessesParams) => {
   vi.mocked(NoticeApi.list).mockResolvedValueOnce(notice);
 
   if (processesParams.error) {
-    vi.mocked(ProcessApi.list).mockRejectedValueOnce(processesParams.processes);
+    vi.mocked(ProcessApi.listPublic).mockRejectedValueOnce(processesParams.processes);
   } else {
-    vi.mocked(ProcessApi.list).mockResolvedValueOnce(processesParams.processes);
+    vi.mocked(ProcessApi.listPublic).mockResolvedValueOnce(processesParams.processes);
   }
 
   const wrapper = mount(Index, {
